@@ -2,7 +2,7 @@
 
 This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
-Its aims is to provide a small DSL for plugin developers who want to use Pusher notifications within Redmine.
+It aims to provide a small DSL for plugin developers who want to use Pusher notifications for their Redmine plugins.
 
 To achieve this, you should install first [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) which actually install this gem and [gritter](https://github.com/RobinBrouwer/gritter) gem.
 
