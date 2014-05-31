@@ -18,6 +18,7 @@ Then you just need to declare your channels and events in your ```init.rb``` fil
 * Ruby 1.9.x or 2.0.x
 * a working [Redmine](http://www.redmine.org/) installation
 * an account on [Pusher](http://pusher.com)
+* [pusher](https://github.com/pusher/pusher-gem) gem
 
 ## Installation
 
