@@ -18,6 +18,59 @@ It must be used with [Redmine Pusher Notifications](https://github.com/jbox-web/
 
     gem install acts_as_notifiable_redmine
 
+## Example usage
+First you need to configure you Pusher account :
+
+    ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
+      app_id    'xxxxx'
+      key       'xxxxxxxxxxxxxxxxxxxx'
+      secret    'xxxxxxxxxxxxxxxxxxxx'
+      encrypted true
+    end
+
+Then you need to register your channels and events :
+
+    ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
+      target Proc.new { User.current.login }
+      event  :event1, :sticky => true
+      event  :event2, :sticky => false
+      event  :event3
+    end
+    
+    ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
+      target 'broadcast'
+      event  :event1, :sticky => true
+      event  :event2, :sticky => false
+      event  :event3
+    end
+
+Once done, you can get the registered channels and events with :
+
+    ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
+      puts "#############"
+      puts "Channel :"
+      puts "name       : #{channel.name}"
+      puts "identifier : #{channel.identifier}"
+      puts "token      : #{channel.token}"
+      puts "events     :"
+      channel.events.each do |event|
+        puts "  * #{event.name} (sticky : #{event.sticky?})"
+      end
+      puts ""
+    end
+
+To get the Pusher parameters :
+
+    courier = ActsAsNotifiableRedmine::Notifications.courier
+    
+    puts "#############"
+    puts "Courier :"
+    puts "name      : #{courier.name}"
+    puts "app_id    : #{courier.app_id}"
+    puts "key       : #{courier.key}"
+    puts "secret    : #{courier.secret}"
+    puts "encrypted : #{courier.encrypted}"
+    
 ## Copyrights & License
 acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
 
