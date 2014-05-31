@@ -26,6 +26,8 @@ First you need to configure you Pusher account :
       encrypted true
     end
 
+**Note :** If you're using Redmine Pusher Notifications plugin you don't need to do this. Instead, go to the plugin configuration page.
+
 Then you need to register your channels and events : each channel can have many events.
 It may also have an optional ```target``` parameter which can be a string or a Proc.
 
@@ -74,7 +76,7 @@ Finally to send notifications :
 
     ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
 
-**Note** : The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
+**Note :** The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
 
     class Comment < ActiveRecord::Base
         has_many :watchers
