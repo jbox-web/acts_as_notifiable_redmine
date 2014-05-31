@@ -148,7 +148,7 @@ And to display them (put this in the layout) :
       <% end %>
     <% end %>
 
-**Note** : [gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/) is not bundled with the gem.
+**Note** : [gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/) is not bundled with this gem. If you're using [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) this part is already done by the plugin.
 
 ## Copyrights & License
 acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
