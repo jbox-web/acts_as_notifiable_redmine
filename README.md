@@ -1,8 +1,6 @@
 ### A gem which makes notifying your Redmine instance easy ;)
 
-This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine.
-
-It must be used with [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications).
+This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
 ## Code status
 
@@ -28,7 +26,8 @@ First you need to configure you Pusher account :
       encrypted true
     end
 
-Then you need to register your channels and events :
+Then you need to register your channels and events : each channel can have many events.
+It may also have an optional ```target``` parameter which can be a string or a Proc.
 
     ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
       target Proc.new { User.current.login }
@@ -73,8 +72,73 @@ To get the Pusher parameters :
     
 Finally to send notifications :
 
-    ActsAsNotifiableRedmine::Notifications.send_notification(channels, event, {:message => 'hello!'})
-  
+    ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+
+**Note** : The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
+
+    class Comment < ActiveRecord::Base
+        has_many :watchers
+        after_create :send_notification
+        
+        private
+        
+            def send_notification
+                channels = []
+                watchers.each do |watcher|
+                    token = '<channel_name>-' + watcher.login
+                    channels.push(token)
+                end
+                ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
+            end
+    end
+
+And to display them (put this in the layout) :
+
+    <% if User.current.logged? %>
+
+      <%= javascript_tag do %>
+    
+        $(document).ready(function() {
+          $.extend($.gritter.options, {
+            fade_in_speed: 'fast',
+            fade_out_speed: 'fast',
+            time: 6000,
+          });
+
+          $(function() {
+            var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');
+    
+            <% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %>
+              var <%= j channel.identifier %> = pusher.subscribe('<%= channel.token %>');
+    
+              <%= channel.identifier %>.bind('subscription_error', function(status) {
+                $.gritter.add({
+                  title: 'Pusher : <%= channel.identifier %>',
+                  text: 'Subscription error'
+                });
+              });
+    
+              <% channel.events.each do |event| %>
+                <%= channel.identifier %>.bind('<%= event.name %>', function(data) {
+                  $.gritter.add({
+                    title: data.title,
+                    text: data.message,
+                    image: data.image,
+                    sticky: <%= event.sticky? %>,
+                  });
+                });
+    
+              <% end %>
+    
+            <% end %>
+    
+          });
+        });
+      <% end %>
+    <% end %>
+
+**Note** : [gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/) is not bundled with the gem.
+
 ## Copyrights & License
 acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
 
