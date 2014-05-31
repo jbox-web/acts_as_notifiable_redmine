@@ -1,4 +1,4 @@
-### A gem which makes notifying your Redmine instance easy ;)
+### ![logo](https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/git_logo.png) A gem which makes notifying your Redmine instance easy ;)
 
 This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
