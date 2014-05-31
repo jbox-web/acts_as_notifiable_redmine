@@ -2,6 +2,12 @@
 
 This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
+Its aims is to provide a small DSL for plugin developers who want to use Pusher notifications within Redmine.
+
+To achieve this, you should install first [Redmine Pusher Notifications]() which actually install this gem and [gritter]() gem.
+
+Then you just need to declare your channels and events in your ```init.rb``` file. That's all!
+
 ## Code status
 
 * [![Gem Version](https://badge.fury.io/rb/acts_as_notifiable_redmine.svg)](http://badge.fury.io/rb/acts_as_notifiable_redmine)
@@ -45,6 +51,8 @@ It may also have an optional ```target``` parameter which can be a string or a P
       event  :event2, :sticky => false
       event  :event3
     end
+
+**Note :** If you're using Redmine Pusher Notifications plugin this is done in ```init.rb``` file.
 
 Once done, you can get the registered channels and events with :
 
