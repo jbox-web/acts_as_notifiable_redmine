@@ -40,6 +40,12 @@
 
         <p>This gem is designed to integrate the <a href="http://pusher.com">Pusher Notification System</a> in Redmine but you may use it for other Rails apps ;)</p>
 
+<p>Its aims is to provide a small DSL for plugin developers who want to use Pusher notifications within Redmine.</p>
+
+<p>To achieve this, you should install first <a href="https://github.com/jbox-web/redmine_pusher_notifications">Redmine Pusher Notifications</a> which actually install this gem and <a href="https://github.com/RobinBrouwer/gritter">gritter</a> gem.</p>
+
+<p>Then you just need to declare your channels and events in your <code>init.rb</code> file. That's all!</p>
+
 <h2>
 <a name="code-status" class="anchor" href="#code-status"><span class="octicon octicon-link"></span></a>Code status</h2>
 
@@ -55,6 +61,8 @@
 <li>a working <a href="http://www.redmine.org/">Redmine</a> installation</li>
 <li>an account on <a href="http://pusher.com">Pusher</a>
 </li>
+<li>
+<a href="https://github.com/pusher/pusher-gem">pusher</a> gem</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
@@ -64,7 +72,7 @@
 <h2>
 <a name="example-usage" class="anchor" href="#example-usage"><span class="octicon octicon-link"></span></a>Example usage</h2>
 
-<p>First you need to configure you Pusher account :</p>
+<p><strong>(1)</strong> First you need to configure you Pusher account :</p>
 
 <pre><code>ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
   app_id    'xxxxx'
@@ -76,7 +84,7 @@ end
 
 <p><strong>Note :</strong> If you're using Redmine Pusher Notifications plugin you don't need to do this. Instead, go to the plugin configuration page.</p>
 
-<p>Then you need to register your channels and events : each channel can have many events.
+<p><strong>(2)</strong> Then you need to register your channels and events : each channel can have many events.
 It may also have an optional <code>target</code> parameter which can be a string or a Proc.</p>
 
 <pre><code>ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
@@ -94,7 +102,9 @@ ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
 end
 </code></pre>
 
-<p>Once done, you can get the registered channels and events with :</p>
+<p><strong>Note :</strong> If you're using Redmine Pusher Notifications plugin this is done in <code>init.rb</code> file.</p>
+
+<p><strong>(3)</strong> Once done, you can get the registered channels and events with :</p>
 
 <pre><code>ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
   puts "#############"
@@ -123,7 +133,7 @@ puts "secret    : #{courier.secret}"
 puts "encrypted : #{courier.encrypted}"
 </code></pre>
 
-<p>Finally to send notifications :</p>
+<p><strong>(4)</strong> Finally to send notifications :</p>
 
 <pre><code>ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title =&gt; 'Hello!', :message =&gt; 'This is a test message !'})
 </code></pre>
@@ -147,7 +157,7 @@ puts "encrypted : #{courier.encrypted}"
 end
 </code></pre>
 
-<p>And to display them (put this in the layout) :</p>
+<p><strong>(5)</strong> And to display them (put this in the layout) :</p>
 
 <pre><code>&lt;% if User.current.logged? %&gt;
 
@@ -193,7 +203,7 @@ end
 &lt;% end %&gt;
 </code></pre>
 
-<p><strong>Note</strong> : <a href="http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/">gritter</a> is not bundled with the gem.</p>
+<p><strong>Note</strong> : <a href="https://github.com/RobinBrouwer/gritter">gritter</a> is not bundled with this gem. If you're using <a href="https://github.com/jbox-web/redmine_pusher_notifications">Redmine Pusher Notifications</a> this part is already done by the plugin.</p>
 
 <h2>
 <a name="copyrights--license" class="anchor" href="#copyrights--license"><span class="octicon octicon-link"></span></a>Copyrights &amp; License</h2>
