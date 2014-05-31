@@ -73,7 +73,7 @@ To get the Pusher parameters :
     
 Finally to send notifications :
 
-    ActsAsNotifiableRedmine::Notifications.send_notification(channels, event, options)
+    ActsAsNotifiableRedmine::Notifications.send_notification(channels, event, {:message => 'hello!'})
   
 ## Copyrights & License
 acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
