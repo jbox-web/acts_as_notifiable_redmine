@@ -24,7 +24,7 @@ Then you just need to declare your channels and events in your ```init.rb``` fil
     gem install acts_as_notifiable_redmine
 
 ## Example usage
-First you need to configure you Pusher account :
+**(1)** First you need to configure you Pusher account :
 
     ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
       app_id    'xxxxx'
@@ -35,7 +35,7 @@ First you need to configure you Pusher account :
 
 **Note :** If you're using Redmine Pusher Notifications plugin you don't need to do this. Instead, go to the plugin configuration page.
 
-Then you need to register your channels and events : each channel can have many events.
+**(2)** Then you need to register your channels and events : each channel can have many events.
 It may also have an optional ```target``` parameter which can be a string or a Proc.
 
     ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
@@ -54,7 +54,7 @@ It may also have an optional ```target``` parameter which can be a string or a P
 
 **Note :** If you're using Redmine Pusher Notifications plugin this is done in ```init.rb``` file.
 
-Once done, you can get the registered channels and events with :
+**(3)** Once done, you can get the registered channels and events with :
 
     ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
       puts "#############"
@@ -81,7 +81,7 @@ To get the Pusher parameters :
     puts "secret    : #{courier.secret}"
     puts "encrypted : #{courier.encrypted}"
     
-Finally to send notifications :
+**(4)** Finally to send notifications :
 
     ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
 
@@ -103,7 +103,7 @@ Finally to send notifications :
             end
     end
 
-And to display them (put this in the layout) :
+**(5)** And to display them (put this in the layout) :
 
     <% if User.current.logged? %>
 
