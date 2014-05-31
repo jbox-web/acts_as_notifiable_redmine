@@ -6,6 +6,7 @@ It must be used with [Redmine Pusher Notifications](https://github.com/jbox-web/
 
 ## Code status
 
+* [![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
 
 ## Requirements
 * Ruby 1.9.x or 2.0.x
