@@ -6,6 +6,7 @@ It must be used with [Redmine Pusher Notifications](https://github.com/jbox-web/
 
 ## Code status
 
+* [![Gem Version](https://badge.fury.io/rb/acts_as_notifiable_redmine.svg)](http://badge.fury.io/rb/acts_as_notifiable_redmine)
 * [![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
 
 ## Requirements
