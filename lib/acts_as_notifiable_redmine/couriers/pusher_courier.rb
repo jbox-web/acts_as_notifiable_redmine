@@ -1,3 +1,5 @@
+require 'pusher'
+
 module ActsAsNotifiableRedmine
   module Couriers
 
