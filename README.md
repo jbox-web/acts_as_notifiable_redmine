@@ -1,4 +1,9 @@
-### ![logo](https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/pusher_logo.png) A gem which makes notifying your Redmine instance easy ;)
+## ![logo](https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/pusher_logo.png) A gem which makes notifying your Redmine instance easy ;)
+
+[![Gem Version](https://badge.fury.io/rb/acts_as_notifiable_redmine.svg)](http://badge.fury.io/rb/acts_as_notifiable_redmine)
+[![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
+[![Dependency Status](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg)](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FBT7E7DAVVEEU)
 
 This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
@@ -7,12 +12,6 @@ It aims to provide a small DSL for plugin developers who want to use Pusher noti
 To achieve this, you should install first [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) which actually install this gem and the [gritter](https://github.com/RobinBrouwer/gritter) gem.
 
 Then you just need to declare your channels and events in your ```init.rb``` file. That's all!
-
-## Code status
-
-* [![Gem Version](https://badge.fury.io/rb/acts_as_notifiable_redmine.svg)](http://badge.fury.io/rb/acts_as_notifiable_redmine)
-* [![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
-* [![Dependency Status](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg)](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine)
 
 ## Requirements
 * Ruby 1.9.x or 2.0.x
@@ -152,9 +151,10 @@ To get the Pusher parameters :
 **Note** : [gritter](https://github.com/RobinBrouwer/gritter) is not bundled with this gem. If you're using [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) this part is already done by the plugin.
 
 ## Copyrights & License
+
 acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
 
-Copyright (c) 2014 Nicolas Rodriguez (nrodriguez@jbox-web.com), JBox Web (http://www.jbox-web.com) [![endorse](https://api.coderwall.com/n-rodriguez/endorsecount.png)](https://coderwall.com/n-rodriguez)
+Copyright (c) 2014-2015 Nicolas Rodriguez (nrodriguez@jbox-web.com), JBox Web (http://www.jbox-web.com) [![endorse](https://api.coderwall.com/n-rodriguez/endorsecount.png)](https://coderwall.com/n-rodriguez)
 
 ## Contribute
 
