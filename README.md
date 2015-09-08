@@ -23,87 +23,101 @@ Then you just need to declare your channels and events in your ```init.rb``` fil
 
 ## Installation
 
-    gem install acts_as_notifiable_redmine
+```ruby
+gem install acts_as_notifiable_redmine
+```
 
 ## Example usage
 **(1)** First you need to configure you Pusher account :
 
-    ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
-      app_id    'xxxxx'
-      key       'xxxxxxxxxxxxxxxxxxxx'
-      secret    'xxxxxxxxxxxxxxxxxxxx'
-      encrypted true
-    end
+```ruby
+ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
+  app_id    'xxxxx'
+  key       'xxxxxxxxxxxxxxxxxxxx'
+  secret    'xxxxxxxxxxxxxxxxxxxx'
+  encrypted true
+end
+```
 
 **Note :** If you're using Redmine Pusher Notifications plugin you don't need to do this. Instead, go to the plugin configuration page.
 
 **(2)** Then you need to register your channels and events : each channel can have many events.
 It may also have an optional ```target``` parameter which can be a string or a Proc.
 
-    ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
-      target Proc.new { User.current.login }
-      event  :event1, :sticky => true
-      event  :event2, :sticky => false
-      event  :event3
-    end
+```ruby
+ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
+  target Proc.new { User.current.login }
+  event  :event1, :sticky => true
+  event  :event2, :sticky => false
+  event  :event3
+end
 
-    ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
-      target 'broadcast'
-      event  :event1, :sticky => true
-      event  :event2, :sticky => false
-      event  :event3
-    end
+ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
+  target 'broadcast'
+  event  :event1, :sticky => true
+  event  :event2, :sticky => false
+  event  :event3
+end
+```
 
 **Note :** If you're using Redmine Pusher Notifications plugin this is done in ```init.rb``` file.
 
 **(3)** Once done, you can get the registered channels and events with :
 
-    ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
-      puts "#############"
-      puts "Channel :"
-      puts "name       : #{channel.name}"
-      puts "identifier : #{channel.identifier}"
-      puts "token      : #{channel.token}"
-      puts "events     :"
-      channel.events.each do |event|
-        puts "  * #{event.name} (sticky : #{event.sticky?})"
-      end
-      puts ""
-    end
+```ruby
+ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
+  puts "#############"
+  puts "Channel :"
+  puts "name       : #{channel.name}"
+  puts "identifier : #{channel.identifier}"
+  puts "token      : #{channel.token}"
+  puts "events     :"
+  channel.events.each do |event|
+    puts "  * #{event.name} (sticky : #{event.sticky?})"
+  end
+  puts ""
+end
+```
 
 To get the Pusher parameters :
 
-    courier = ActsAsNotifiableRedmine::Notifications.courier
+```ruby
+courier = ActsAsNotifiableRedmine::Notifications.courier
 
-    puts "#############"
-    puts "Courier :"
-    puts "name      : #{courier.name}"
-    puts "app_id    : #{courier.app_id}"
-    puts "key       : #{courier.key}"
-    puts "secret    : #{courier.secret}"
-    puts "encrypted : #{courier.encrypted}"
+puts "#############"
+puts "Courier :"
+puts "name      : #{courier.name}"
+puts "app_id    : #{courier.app_id}"
+puts "key       : #{courier.key}"
+puts "secret    : #{courier.secret}"
+puts "encrypted : #{courier.encrypted}"
+```
 
 **(4)** Finally to send notifications :
 
-    ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+```ruby
+ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+```
 
 **Note :** The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
 
-    class Comment < ActiveRecord::Base
-        has_many :watchers
-        after_create :send_notification
+```ruby
+class Comment < ActiveRecord::Base
+    has_many :watchers
+    after_create :send_notification
 
-        private
+    private
 
-            def send_notification
-                channels = []
-                watchers.each do |watcher|
-                    token = '<channel_name>-' + watcher.login
-                    channels.push(token)
-                end
-                ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
+        def send_notification
+            channels = []
+            watchers.each do |watcher|
+                token = '<channel_name>-' + watcher.login
+                channels.push(token)
             end
-    end
+            ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
+        end
+end
+```
 
 **(5)** And to display them (put this in the layout) :
 
