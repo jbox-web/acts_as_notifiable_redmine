@@ -1,41 +1,32 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>acts_as_notifiable_redmine by jbox-web</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>acts_as_notifiable_redmine</h1>
-        <p> A gem which makes notifying your Redmine instance easy ;)</p>
+    <section class="page-header">
+      <h1 class="project-name">acts_as_notifiable_redmine</h1>
+      <h2 class="project-tagline"> A gem which makes notifying your Redmine instance easy ;)</h2>
+      <a href="https://github.com/jbox-web/acts_as_notifiable_redmine" class="btn">View on GitHub</a>
+      <a href="https://github.com/jbox-web/acts_as_notifiable_redmine/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/jbox-web/acts_as_notifiable_redmine/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/jbox-web/acts_as_notifiable_redmine">View the Project on GitHub <small>jbox-web/acts_as_notifiable_redmine</small></a></p>
+    <section class="main-content">
+      <h2>
+<a id="-a-gem-which-makes-notifying-your-redmine-instance-easy-" class="anchor" href="#-a-gem-which-makes-notifying-your-redmine-instance-easy-" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/pusher_logo.png" alt="logo"> A gem which makes notifying your Redmine instance easy ;)</h2>
 
-
-        <ul>
-          <li><a href="https://github.com/jbox-web/acts_as_notifiable_redmine/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/jbox-web/acts_as_notifiable_redmine/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/jbox-web/acts_as_notifiable_redmine">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h2>
-<a id="-a-gem-which-makes-notifying-your-redmine-instance-easy-" class="anchor" href="#-a-gem-which-makes-notifying-your-redmine-instance-easy-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-<img src="https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/pusher_logo.png" alt="logo"> A gem which makes notifying your Redmine instance easy ;)</h2>
-
-<p><a href="http://badge.fury.io/rb/acts_as_notifiable_redmine"><img src="https://badge.fury.io/rb/acts_as_notifiable_redmine.svg" alt="Gem Version"></a>
+<p><a href="https://github.com/jbox-web/active_use_case/blob/master/LICENSE"><img src="https://img.shields.io/github/license/jbox-web/active_use_case.svg" alt="GitHub license"></a>
+<a href="https://rubygems.org/gems/acts_as_notifiable_redmine"><img src="https://img.shields.io/gem/v/acts_as_notifiable_redmine.svg" alt="Gem"></a>
+<a href="https://rubygems.org/gems/acts_as_notifiable_redmine/versions/0.1.1"><img src="https://img.shields.io/gem/dv/acts_as_notifiable_redmine/0.1.1.svg" alt="Gem"></a>
 <a href="https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine"><img src="https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png" alt="Code Climate"></a>
-<a href="https://gemnasium.com/jbox-web/acts_as_notifiable_redmine"><img src="https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg" alt="Dependency Status"></a>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=FBT7E7DAVVEEU"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"></a></p>
+<a href="https://gemnasium.com/jbox-web/acts_as_notifiable_redmine"><img src="https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg" alt="Dependency Status"></a></p>
 
 <p>This gem is designed to integrate the <a href="http://pusher.com">Pusher Notification System</a> in Redmine but you may use it for other Rails apps ;)</p>
 
@@ -60,151 +51,136 @@
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<pre><code>gem install acts_as_notifiable_redmine
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> install acts_as_notifiable_redmine</pre></div>
 
 <h2>
 <a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example usage</h2>
 
 <p><strong>(1)</strong> First you need to configure you Pusher account :</p>
 
-<pre><code>ActsAsNotifiableRedmine::Notifications.register_courier :pusher do
-  app_id    'xxxxx'
-  key       'xxxxxxxxxxxxxxxxxxxx'
-  secret    'xxxxxxxxxxxxxxxxxxxx'
-  encrypted true
-end
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.register_courier <span class="pl-c1">:pusher</span> <span class="pl-k">do</span>
+  app_id    <span class="pl-s"><span class="pl-pds">'</span>xxxxx<span class="pl-pds">'</span></span>
+  key       <span class="pl-s"><span class="pl-pds">'</span>xxxxxxxxxxxxxxxxxxxx<span class="pl-pds">'</span></span>
+  secret    <span class="pl-s"><span class="pl-pds">'</span>xxxxxxxxxxxxxxxxxxxx<span class="pl-pds">'</span></span>
+  encrypted <span class="pl-c1">true</span>
+<span class="pl-k">end</span></pre></div>
 
 <p><strong>Note :</strong> If you're using Redmine Pusher Notifications plugin you don't need to do this. Instead, go to the plugin configuration page.</p>
 
 <p><strong>(2)</strong> Then you need to register your channels and events : each channel can have many events.
 It may also have an optional <code>target</code> parameter which can be a string or a Proc.</p>
 
-<pre><code>ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
-  target Proc.new { User.current.login }
-  event  :event1, :sticky =&gt; true
-  event  :event2, :sticky =&gt; false
-  event  :event3
-end
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.register_channel <span class="pl-c1">:channel_test</span> <span class="pl-k">do</span>
+  target <span class="pl-c1">Proc</span>.<span class="pl-k">new</span> { <span class="pl-c1">User</span>.current.login }
+  event  <span class="pl-c1">:event1</span>, <span class="pl-c1">:sticky</span> =&gt; <span class="pl-c1">true</span>
+  event  <span class="pl-c1">:event2</span>, <span class="pl-c1">:sticky</span> =&gt; <span class="pl-c1">false</span>
+  event  <span class="pl-c1">:event3</span>
+<span class="pl-k">end</span>
 
-ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
-  target 'broadcast'
-  event  :event1, :sticky =&gt; true
-  event  :event2, :sticky =&gt; false
-  event  :event3
-end
-</code></pre>
+<span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.register_channel <span class="pl-c1">:broadcast</span> <span class="pl-k">do</span>
+  target <span class="pl-s"><span class="pl-pds">'</span>broadcast<span class="pl-pds">'</span></span>
+  event  <span class="pl-c1">:event1</span>, <span class="pl-c1">:sticky</span> =&gt; <span class="pl-c1">true</span>
+  event  <span class="pl-c1">:event2</span>, <span class="pl-c1">:sticky</span> =&gt; <span class="pl-c1">false</span>
+  event  <span class="pl-c1">:event3</span>
+<span class="pl-k">end</span></pre></div>
 
 <p><strong>Note :</strong> If you're using Redmine Pusher Notifications plugin this is done in <code>init.rb</code> file.</p>
 
 <p><strong>(3)</strong> Once done, you can get the registered channels and events with :</p>
 
-<pre><code>ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel|
-  puts "#############"
-  puts "Channel :"
-  puts "name       : #{channel.name}"
-  puts "identifier : #{channel.identifier}"
-  puts "token      : #{channel.token}"
-  puts "events     :"
-  channel.events.each do |event|
-    puts "  * #{event.name} (sticky : #{event.sticky?})"
-  end
-  puts ""
-end
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.channels.each <span class="pl-k">do </span>|<span class="pl-smi">name</span>, <span class="pl-smi">channel</span>|
+  puts <span class="pl-s"><span class="pl-pds">"</span>#############<span class="pl-pds">"</span></span>
+  puts <span class="pl-s"><span class="pl-pds">"</span>Channel :<span class="pl-pds">"</span></span>
+  puts <span class="pl-s"><span class="pl-pds">"</span>name       : <span class="pl-pse">#{</span><span class="pl-s1">channel.name</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+  puts <span class="pl-s"><span class="pl-pds">"</span>identifier : <span class="pl-pse">#{</span><span class="pl-s1">channel.identifier</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+  puts <span class="pl-s"><span class="pl-pds">"</span>token      : <span class="pl-pse">#{</span><span class="pl-s1">channel.token</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+  puts <span class="pl-s"><span class="pl-pds">"</span>events     :<span class="pl-pds">"</span></span>
+  channel.events.each <span class="pl-k">do </span>|<span class="pl-smi">event</span>|
+    puts <span class="pl-s"><span class="pl-pds">"</span>  * <span class="pl-pse">#{</span><span class="pl-s1">event.name</span><span class="pl-pse"><span class="pl-s1">}</span></span> (sticky : <span class="pl-pse">#{</span><span class="pl-s1">event.sticky?</span><span class="pl-pse"><span class="pl-s1">}</span></span>)<span class="pl-pds">"</span></span>
+  <span class="pl-k">end</span>
+  puts <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+<span class="pl-k">end</span></pre></div>
 
 <p>To get the Pusher parameters :</p>
 
-<pre><code>courier = ActsAsNotifiableRedmine::Notifications.courier
+<div class="highlight highlight-ruby"><pre>courier <span class="pl-k">=</span> <span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.courier
 
-puts "#############"
-puts "Courier :"
-puts "name      : #{courier.name}"
-puts "app_id    : #{courier.app_id}"
-puts "key       : #{courier.key}"
-puts "secret    : #{courier.secret}"
-puts "encrypted : #{courier.encrypted}"
-</code></pre>
+puts <span class="pl-s"><span class="pl-pds">"</span>#############<span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>Courier :<span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>name      : <span class="pl-pse">#{</span><span class="pl-s1">courier.name</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>app_id    : <span class="pl-pse">#{</span><span class="pl-s1">courier.app_id</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>key       : <span class="pl-pse">#{</span><span class="pl-s1">courier.key</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>secret    : <span class="pl-pse">#{</span><span class="pl-s1">courier.secret</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span>
+puts <span class="pl-s"><span class="pl-pds">"</span>encrypted : <span class="pl-pse">#{</span><span class="pl-s1">courier.encrypted</span><span class="pl-pse"><span class="pl-s1">}</span></span><span class="pl-pds">"</span></span></pre></div>
 
 <p><strong>(4)</strong> Finally to send notifications :</p>
 
-<pre><code>ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title =&gt; 'Hello!', :message =&gt; 'This is a test message !'})
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.send_notification([channel.token], event.name, {<span class="pl-c1">:title</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Hello!<span class="pl-pds">'</span></span>, <span class="pl-c1">:message</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>This is a test message !<span class="pl-pds">'</span></span>})</pre></div>
 
 <p><strong>Note :</strong> The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :</p>
 
-<pre><code>class Comment &lt; ActiveRecord::Base
-    has_many :watchers
-    after_create :send_notification
+<div class="highlight highlight-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Comment<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  has_many <span class="pl-c1">:watchers</span>
+  after_create <span class="pl-c1">:send_notification</span>
 
-    private
+  <span class="pl-k">private</span>
 
-        def send_notification
-            channels = []
-            watchers.each do |watcher|
-                token = '&lt;channel_name&gt;-' + watcher.login
-                channels.push(token)
-            end
-            ActsAsNotifiableRedmine::Notifications.send_notification(channels, &lt;event_name&gt;, {:title =&gt; 'Hello!', :message =&gt; 'This is a test message !'})
-        end
-end
-</code></pre>
+    <span class="pl-k">def</span> <span class="pl-en">send_notification</span>
+      channels <span class="pl-k">=</span> []
+      watchers.each <span class="pl-k">do </span>|<span class="pl-smi">watcher</span>|
+        token <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;channel_name&gt;-<span class="pl-pds">'</span></span> <span class="pl-k">+</span> watcher.login
+        channels.push(token)
+      <span class="pl-k">end</span>
+      <span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.send_notification(channels, <span class="pl-k">&lt;</span>event_name<span class="pl-k">&gt;</span>, {<span class="pl-c1">:title</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>Hello!<span class="pl-pds">'</span></span>, <span class="pl-c1">:message</span> =&gt; <span class="pl-s"><span class="pl-pds">'</span>This is a test message !<span class="pl-pds">'</span></span>})
+    <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
 
 <p><strong>(5)</strong> And to display them (put this in the layout) :</p>
 
-<pre><code>&lt;% if User.current.logged? %&gt;
-
-  &lt;%= javascript_tag do %&gt;
+<div class="highlight highlight-ruby"><pre><span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">if</span> <span class="pl-c1">User</span>.current.logged? <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">  &lt;%= javascript_tag do %<span class="pl-pds">&gt;</span></span>
 
     $(document).ready(function() {
-      $.extend($.gritter.options, {
-        fade_in_speed: 'fast',
-        fade_out_speed: 'fast',
-        time: 6000,
+      <span class="pl-smi">$.</span><span class="pl-k">extend</span>(<span class="pl-smi">$.</span>gritter.options, {
+        <span class="pl-c1">fade_in_speed:</span> <span class="pl-s"><span class="pl-pds">'</span>fast<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">fade_out_speed:</span> <span class="pl-s"><span class="pl-pds">'</span>fast<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">time:</span> <span class="pl-c1">6000</span>,
       });
 
       $(function() {
-        var pusher = new Pusher('&lt;%= ActsAsNotifiableRedmine::Notifications.courier.key %&gt;');
+        var pusher <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Pusher</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;%= ActsAsNotifiableRedmine::Notifications.courier.key %&gt;<span class="pl-pds">'</span></span>);
 
-        &lt;% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %&gt;
-          var &lt;%= j channel.identifier %&gt; = pusher.subscribe('&lt;%= channel.token %&gt;');
+        <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-c1">ActsAsNotifiableRedmine</span>::<span class="pl-c1">Notifications</span>.channels.each <span class="pl-k">do </span>|<span class="pl-smi">name</span>, <span class="pl-smi">channel</span>| <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">          var &lt;%= j channel.identifier %<span class="pl-pds">&gt;</span></span> <span class="pl-k">=</span> pusher.subscribe(<span class="pl-s"><span class="pl-pds">'</span>&lt;%= channel.token %&gt;<span class="pl-pds">'</span></span>);
 
-          &lt;%= channel.identifier %&gt;.bind('subscription_error', function(status) {
-            $.gritter.add({
-              title: 'Pusher : &lt;%= channel.identifier %&gt;',
-              text: 'Subscription error'
-            });
-          });
-
-          &lt;% channel.events.each do |event| %&gt;
-            &lt;%= channel.identifier %&gt;.bind('&lt;%= event.name %&gt;', function(data) {
-              $.gritter.add({
-                title: data.title,
-                text: data.message,
-                image: data.image,
-                sticky: &lt;%= event.sticky? %&gt;,
+          <span class="pl-k">&lt;</span><span class="pl-k">%=</span> channel.identifier <span class="pl-s"><span class="pl-pds">%&gt;</span>.bind('subscription_error', function(status) {</span>
+<span class="pl-s">            $.gritter.add({</span>
+<span class="pl-s">              title: 'Pusher : &lt;%= channel.identifier %<span class="pl-pds">&gt;</span></span><span class="pl-s"><span class="pl-pds">'</span>,</span>
+<span class="pl-s">              text: <span class="pl-pds">'</span></span><span class="pl-c1">Subscription</span> error<span class="pl-s"><span class="pl-pds">'</span></span>
+<span class="pl-s">            });</span>
+<span class="pl-s">          });</span>
+<span class="pl-s"></span>
+<span class="pl-s">          &lt;% channel.events.each do |event| %&gt;</span>
+<span class="pl-s">            &lt;%= channel.identifier %&gt;.bind(<span class="pl-pds">'</span></span><span class="pl-k">&lt;</span><span class="pl-k">%=</span> event.name <span class="pl-s"><span class="pl-pds">%&gt;</span>', function(data) {</span>
+<span class="pl-s">              $.gritter.add({</span>
+<span class="pl-s">                title: data.title,</span>
+<span class="pl-s">                text: data.message,</span>
+<span class="pl-s">                image: data.image,</span>
+<span class="pl-s">                sticky: &lt;%= event.sticky? %<span class="pl-pds">&gt;</span></span>,
               });
             });
 
-          &lt;% end %&gt;
-
-        &lt;% end %&gt;
+          <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s"></span>
+<span class="pl-s">        &lt;% end %<span class="pl-pds">&gt;</span></span>
 
       });
     });
-  &lt;% end %&gt;
-&lt;% end %&gt;
-</code></pre>
+  <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">&lt;% end %<span class="pl-pds">&gt;</span></span></pre></div>
 
 <p><strong>Note</strong> : <a href="https://github.com/RobinBrouwer/gritter">gritter</a> is not bundled with this gem. If you're using <a href="https://github.com/jbox-web/redmine_pusher_notifications">Redmine Pusher Notifications</a> this part is already done by the plugin.</p>
-
-<h2>
-<a id="copyrights--license" class="anchor" href="#copyrights--license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyrights &amp; License</h2>
-
-<p>acts_as_notifiable_redmine is completely free and open source and released under the <a href="https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt">MIT License</a>.</p>
-
-<p>Copyright (c) 2014-2015 Nicolas Rodriguez (<a href="mailto:nrodriguez@jbox-web.com">nrodriguez@jbox-web.com</a>), JBox Web (<a href="http://www.jbox-web.com">http://www.jbox-web.com</a>) <a href="https://coderwall.com/n-rodriguez"><img src="https://api.coderwall.com/n-rodriguez/endorsecount.png" alt="endorse"></a></p>
 
 <h2>
 <a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
@@ -218,17 +194,15 @@ end
 <li>Submitting translations</li>
 </ul>
 
-<p>You can also donate :)</p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/jbox-web/acts_as_notifiable_redmine">acts_as_notifiable_redmine</a> is maintained by <a href="https://github.com/jbox-web">jbox-web</a>.</span>
 
-<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=FBT7E7DAVVEEU"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"></a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/jbox-web">jbox-web</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
