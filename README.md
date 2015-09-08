@@ -103,19 +103,19 @@ ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.
 
 ```ruby
 class Comment < ActiveRecord::Base
-    has_many :watchers
-    after_create :send_notification
+  has_many :watchers
+  after_create :send_notification
 
-    private
+  private
 
-        def send_notification
-            channels = []
-            watchers.each do |watcher|
-                token = '<channel_name>-' + watcher.login
-                channels.push(token)
-            end
-            ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
-        end
+    def send_notification
+      channels = []
+      watchers.each do |watcher|
+        token = '<channel_name>-' + watcher.login
+        channels.push(token)
+      end
+      ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
+    end
 end
 ```
 
