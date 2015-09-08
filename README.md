@@ -1,9 +1,10 @@
 ## ![logo](https://raw.github.com/jbox-web/acts_as_notifiable_redmine/gh-pages/images/pusher_logo.png) A gem which makes notifying your Redmine instance easy ;)
 
-[![Gem Version](https://badge.fury.io/rb/acts_as_notifiable_redmine.svg)](http://badge.fury.io/rb/acts_as_notifiable_redmine)
+[![GitHub license](https://img.shields.io/github/license/jbox-web/active_use_case.svg)](https://github.com/jbox-web/active_use_case/blob/master/LICENSE)
+[![Gem](https://img.shields.io/gem/v/acts_as_notifiable_redmine.svg)](https://rubygems.org/gems/acts_as_notifiable_redmine)
+[![Gem](https://img.shields.io/gem/dv/acts_as_notifiable_redmine/0.1.1.svg)]()
 [![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
 [![Dependency Status](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg)](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine)
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FBT7E7DAVVEEU)
 
 This gem is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine but you may use it for other Rails apps ;)
 
@@ -14,6 +15,7 @@ To achieve this, you should install first [Redmine Pusher Notifications](https:/
 Then you just need to declare your channels and events in your ```init.rb``` file. That's all!
 
 ## Requirements
+
 * Ruby 1.9.x or 2.0.x
 * a working [Redmine](http://www.redmine.org/) installation
 * a free account on [Pusher](http://pusher.com)
@@ -44,7 +46,7 @@ It may also have an optional ```target``` parameter which can be a string or a P
       event  :event2, :sticky => false
       event  :event3
     end
-    
+
     ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
       target 'broadcast'
       event  :event1, :sticky => true
@@ -72,7 +74,7 @@ It may also have an optional ```target``` parameter which can be a string or a P
 To get the Pusher parameters :
 
     courier = ActsAsNotifiableRedmine::Notifications.courier
-    
+
     puts "#############"
     puts "Courier :"
     puts "name      : #{courier.name}"
@@ -80,7 +82,7 @@ To get the Pusher parameters :
     puts "key       : #{courier.key}"
     puts "secret    : #{courier.secret}"
     puts "encrypted : #{courier.encrypted}"
-    
+
 **(4)** Finally to send notifications :
 
     ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
@@ -90,9 +92,9 @@ To get the Pusher parameters :
     class Comment < ActiveRecord::Base
         has_many :watchers
         after_create :send_notification
-        
+
         private
-        
+
             def send_notification
                 channels = []
                 watchers.each do |watcher|
@@ -108,7 +110,7 @@ To get the Pusher parameters :
     <% if User.current.logged? %>
 
       <%= javascript_tag do %>
-    
+
         $(document).ready(function() {
           $.extend($.gritter.options, {
             fade_in_speed: 'fast',
@@ -118,17 +120,17 @@ To get the Pusher parameters :
 
           $(function() {
             var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');
-    
+
             <% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %>
               var <%= j channel.identifier %> = pusher.subscribe('<%= channel.token %>');
-    
+
               <%= channel.identifier %>.bind('subscription_error', function(status) {
                 $.gritter.add({
                   title: 'Pusher : <%= channel.identifier %>',
                   text: 'Subscription error'
                 });
               });
-    
+
               <% channel.events.each do |event| %>
                 <%= channel.identifier %>.bind('<%= event.name %>', function(data) {
                   $.gritter.add({
@@ -138,23 +140,17 @@ To get the Pusher parameters :
                     sticky: <%= event.sticky? %>,
                   });
                 });
-    
+
               <% end %>
-    
+
             <% end %>
-    
+
           });
         });
       <% end %>
     <% end %>
 
 **Note** : [gritter](https://github.com/RobinBrouwer/gritter) is not bundled with this gem. If you're using [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) this part is already done by the plugin.
-
-## Copyrights & License
-
-acts_as_notifiable_redmine is completely free and open source and released under the [MIT License](https://github.com/jbox-web/acts_as_notifiable_redmine/blob/devel/LICENSE.txt).
-
-Copyright (c) 2014-2015 Nicolas Rodriguez (nrodriguez@jbox-web.com), JBox Web (http://www.jbox-web.com) [![endorse](https://api.coderwall.com/n-rodriguez/endorsecount.png)](https://coderwall.com/n-rodriguez)
 
 ## Contribute
 
@@ -163,7 +159,3 @@ You can contribute to this plugin in many ways such as :
 * Contributing code (features or bugfixes)
 * Reporting a bug
 * Submitting translations
-
-You can also donate :)
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FBT7E7DAVVEEU)
