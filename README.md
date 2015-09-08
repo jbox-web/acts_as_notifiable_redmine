@@ -27,7 +27,8 @@ Then you just need to declare your channels and events in your ```init.rb``` fil
 gem install acts_as_notifiable_redmine
 ```
 
-## Example usage
+## Usage
+
 **(1)** First you need to configure you Pusher account :
 
 ```ruby
