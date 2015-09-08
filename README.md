@@ -121,48 +121,50 @@ end
 
 **(5)** And to display them (put this in the layout) :
 
-    <% if User.current.logged? %>
+```ruby
+<% if User.current.logged? %>
 
-      <%= javascript_tag do %>
+  <%= javascript_tag do %>
 
-        $(document).ready(function() {
-          $.extend($.gritter.options, {
-            fade_in_speed: 'fast',
-            fade_out_speed: 'fast',
-            time: 6000,
+    $(document).ready(function() {
+      $.extend($.gritter.options, {
+        fade_in_speed: 'fast',
+        fade_out_speed: 'fast',
+        time: 6000,
+      });
+
+      $(function() {
+        var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');
+
+        <% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %>
+          var <%= j channel.identifier %> = pusher.subscribe('<%= channel.token %>');
+
+          <%= channel.identifier %>.bind('subscription_error', function(status) {
+            $.gritter.add({
+              title: 'Pusher : <%= channel.identifier %>',
+              text: 'Subscription error'
+            });
           });
 
-          $(function() {
-            var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');
-
-            <% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %>
-              var <%= j channel.identifier %> = pusher.subscribe('<%= channel.token %>');
-
-              <%= channel.identifier %>.bind('subscription_error', function(status) {
-                $.gritter.add({
-                  title: 'Pusher : <%= channel.identifier %>',
-                  text: 'Subscription error'
-                });
+          <% channel.events.each do |event| %>
+            <%= channel.identifier %>.bind('<%= event.name %>', function(data) {
+              $.gritter.add({
+                title: data.title,
+                text: data.message,
+                image: data.image,
+                sticky: <%= event.sticky? %>,
               });
+            });
 
-              <% channel.events.each do |event| %>
-                <%= channel.identifier %>.bind('<%= event.name %>', function(data) {
-                  $.gritter.add({
-                    title: data.title,
-                    text: data.message,
-                    image: data.image,
-                    sticky: <%= event.sticky? %>,
-                  });
-                });
+          <% end %>
 
-              <% end %>
+        <% end %>
 
-            <% end %>
-
-          });
-        });
-      <% end %>
-    <% end %>
+      });
+    });
+  <% end %>
+<% end %>
+```
 
 **Note** : [gritter](https://github.com/RobinBrouwer/gritter) is not bundled with this gem. If you're using [Redmine Pusher Notifications](https://github.com/jbox-web/redmine_pusher_notifications) this part is already done by the plugin.
 
