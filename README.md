@@ -4,7 +4,6 @@
 [![Gem](https://img.shields.io/gem/v/acts_as_notifiable_redmine.svg)](https://rubygems.org/gems/acts_as_notifiable_redmine)
 [![Gem](https://img.shields.io/gem/dv/acts_as_notifiable_redmine/0.1.1.svg)](https://rubygems.org/gems/acts_as_notifiable_redmine/versions/0.1.1)
 [![Code Climate](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine.png)](https://codeclimate.com/github/jbox-web/acts_as_notifiable_redmine)
-[![Dependency Status](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine.svg)](https://gemnasium.com/jbox-web/acts_as_notifiable_redmine)
 
 ### A gem which makes notifying your Redmine instance easy ;)
 
